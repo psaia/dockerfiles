@@ -1,11 +1,21 @@
 version: '3.6'
 
 services:
-  db:
-    image: postgres:10-alpine
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8011:8080
+    volumes:
+      - /tmp:/tmp
+
+  postgres:
+    image: postgres:10.4-alpine
     restart: always
     ports:
       - 5432:5432
+    volumes:
+      - /tmp:/tmp
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
